@@ -4444,7 +4444,7 @@ var elements = [
   
   // Start function
   const start = async function(a, b) {
-    const response = await fetch(`https://d32e-150-136-161-75.ngrok.io/poolers?campus=55&per_page=100&page=0`);
+    const response = await fetch(`https://6ede-150-136-161-75.ngrok.io/poolers?campus=55&per_page=100&page=0`);
     const data = await response.json();
 
     console.log(data);
@@ -4481,7 +4481,7 @@ function Add_element_to_circle(elem,min,max)
 
     console.log(r);
     const pers = elements.filter(e=> { return (e.lvl >= min && e.lvl < max && e.image_url != "https://cdn.intra.42.fr/users/default.png")});
-    const ele_width = r.width != 2? area / pers.length : 100;
+    const ele_width = r.width != 2? area / pers.length : 150;
 
     pers.forEach((element, i) => {
 
@@ -4495,19 +4495,25 @@ function Add_element_to_circle(elem,min,max)
         a.style.maxWidth  = ele_width + "px";
         a.style.maxHeight  = ele_width + "px";
         elem.appendChild(a);
-        if(r.width == 2)
-        {
-            a.classList.add("top");
-            a.appendChild(document.createElement("div"));
-            a.appendChild(document.createElement("div"));
-            a.childNodes[0].classList.add("pulse");
-            a.childNodes[0].classList.add("pulse1");
-            a.childNodes[1].classList.add("pulse");
-            a.childNodes[1].classList.add("pulse2");
-        }
+        a.add
+        
+        a.setAttribute("name", element.displayname);
+
         a.style.backgroundImage = "url("+element.image_url+")";
         a.style.left  = X-(a.getBoundingClientRect().width/2) + "px";
         a.style.top  = Y-(a.getBoundingClientRect().width/2) + "px";
+        if(r.width == 2)
+        {
+            a.classList.add("top");
+            a.appendChild(document.createElement("span"));
+            a.addEventListener("mouseenter", function( event ) {
+                event.target.style.borderColor = "purple";
+              }, false);
+              a.addEventListener("mouseleave", function( event ) {
+                // highlight the mouseenter target
+                event.target.style.borderColor = "";
+              }, false);
+        }
     });
 }
 
@@ -4526,6 +4532,7 @@ function create_circle()
         Add_element_to_circle(a,level-i,level-i+1);
         i++;
     }
+
 }
 create_circle();
 map.style.transform = "scale(0.7)";
@@ -4545,7 +4552,16 @@ let width = canvas.width = window.innerWidth;
 let height = canvas.height = window.innerHeight;
 let point = { x: width / 2, y: height / 2 };
 let hue = 0;
+var stringToHTML = function (str) {
+	var parser = new DOMParser();
+	var doc = parser.parseFromString(str, 'text/html');
+	return doc.body.elements;
+};
 
+console.log(stringToHTML('<img src="my-awesome-photo.jpg"><P>FDFD</P>'));
+
+
+//effect
 function Particle() {};
 
 Particle.prototype = {
@@ -4637,3 +4653,32 @@ function setup() {
 }
 
 setup();
+
+function search(event){
+    // let output = [];
+    // for (let i of document.querySelectorAll('*')) {
+    //     if (regex.test(i.type)) { // or whatever attribute you want to search
+    //         output.push(i);
+    //     }
+    // }
+    event = event.charAt(0).toUpperCase() + event.slice(1);
+    let els = document.querySelectorAll('*');
+    els.forEach(
+        e=>{
+            e.classList.remove("finded");
+        }
+    )
+    
+    const issa= '[name^= "'+ event+ '" ]';
+    console.log(issa); // 👉️ div
+    console.log('[name^= "el " ]'); // 👉️ div
+
+    els = document.querySelectorAll('[name^= "'+ event+ '" ]');
+    els.forEach(
+        e=>{
+            e.classList.add("finded");
+        }
+    )
+    console.log(el1); // 👉️ div
+    console.log(event);
+}
