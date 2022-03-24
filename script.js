@@ -4438,7 +4438,11 @@ var elements = [
         "is_launched?": false
     }
 ]
-
+var codeBlock = '<div class="content">' +
+                        '<h1>This is a heading</h1>' +
+                        '<p>This is a paragraph of text.</p>' +
+                        '<p><strong>Note:</strong> If you don\'t escape "quotes" properly, it will not work.</p>' +
+                '</div>';
 
 
   
@@ -4506,14 +4510,16 @@ function Add_element_to_circle(elem,min,max)
         {
             a.classList.add("top");
             a.appendChild(document.createElement("span"));
-            a.addEventListener("mouseenter", function( event ) {
-                event.target.style.borderColor = "purple";
-              }, false);
-              a.addEventListener("mouseleave", function( event ) {
-                // highlight the mouseenter target
-                event.target.style.borderColor = "";
-              }, false);
+            
         }
+        a.addEventListener("mouseenter", function( event ) {
+            event.target.style.borderColor = "purple";
+
+          }, false);
+        a.addEventListener("mouseleave", function( event ) {
+            // highlight the mouseenter target
+            event.target.style.borderColor = "";
+        }, false);
     });
 }
 

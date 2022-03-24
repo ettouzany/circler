@@ -9,6 +9,26 @@ body, html
     font-family: 'Poppins', sans-serif;
 
 }
+
+.view_changer{
+  margin: 16px;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  left: 0;
+  width: 100px;
+  height: 50px;
+  border-radius: 16px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+.view_changer span {
+  margin: 8px;
+}
 /* html {
     height: 100%;
     background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
@@ -149,7 +169,7 @@ body, html
     justify-content: center;
     align-items: center;
 }
-span {
+#map .circle > span {
     /* background:blueviolet; */
     background-size: contain;
     height: 100px;
@@ -157,6 +177,8 @@ span {
     border-radius: 50%;
     display: block;
     position: absolute;
+    pointer-events: all;
+
 }
 .finded {
     border: white 2px solid;
@@ -178,18 +200,13 @@ span {
 
 }
 
-#map .circle span
-{
-    pointer-events: all;
-
-}
 
   
   .top {
       transform: scale(1.6);
-      border: #f1a73d 2px solid ;
+      border: #f1a73d 2px solid;
   }
-  .top span {
+  .top > span {
       position: relative;
       top: -59px;
       background-image: url(./crown.svg);
